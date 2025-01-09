@@ -14,23 +14,24 @@ build:
     - kafka2lsmp = igwn_lldd_lsmp.kafka2lsmp:main
     - lsmp2kafka = igwn_lldd_lsmp.lsmp2kafka:main
   noarch: python
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vvv
 
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python {{ python_min }}
     - setuptools >=38.2.5
   run:
     - configargparse
     - igwn-lldd-common >=0.1.0
-    - python >=3.6
+    - python >={{ python_min }}
     - python-gds
 
 test:
   requires:
     - pip
+    - python {{ python_min }}
   commands:
     # check metadata
     - python -m pip check igwn-lldd-lsmp
